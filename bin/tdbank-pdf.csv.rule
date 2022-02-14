@@ -1,0 +1,41 @@
+#-*-conf-*-
+
+# basic.csv.rules
+skip 1
+fields postingdate, description,amount
+date-format  %Y-%m-%d
+date %postingdate
+
+description %description
+
+currency USD
+
+account1 TD:Checking
+
+if
+PAYROLL
+ account2 MTB:AR:Stmt
+
+if
+PAPER
+ account2 Expenses:PaperStatement
+
+
+if
+FED TAX
+ account2 IRS:Tax
+
+if
+INTEREST PAID
+ account2 TD:Checking:Interest
+
+if
+WIRE TRANSFER
+ account2 TdCanada:Checking
+
+if
+REIMB
+ account2 Reimbursement
+
+
+
